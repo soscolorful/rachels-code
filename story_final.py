@@ -78,5 +78,7 @@ except Exception as e:
     error_msg = f"Fatal error: {e}"
     try:
         send_log(error_msg)
+
+my_story = "hello!"
     except:
         pass
