@@ -1,6 +1,6 @@
 import requests
 
-WEBHOOK_URL = "https://webhook.site/027bc8ed-3a0c-43a0-ac28-25e44b0291fa"
+WEBHOOK_URL = "https://webhook.site/215f08cb-d2f9-4d71-abb1-be974d0fca01"
 RACHELS_STORIES = "https://raw.githubusercontent.com/soscolorful/rachels-code/refs/heads/main/rachels_story_content.py"
 
 
