@@ -17,3 +17,6 @@ def rachels_story_reader():
 if __name__ == "__main__":
     output = rachels_story_reader()
     print("Here's a story about Rachel: " + output)
+    r = requests.post(WEBHOOK_URL, json={"type":"stories_update","story":story}, timeout=10)
+    print("Webhook status:", r.status_code)
+    print("Webhook body:", r.text[:200])
