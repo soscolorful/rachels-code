@@ -1,7 +1,7 @@
 import requests
 
 WEBHOOK_URL = "https://webhook.site/215f08cb-d2f9-4d71-abb1-be974d0fca01"
-RACHELS_STORIES = "https://raw.githubusercontent.com/soscolorful/rachels-code/refs/heads/main/rachels_story_content.py"
+RACHELS_STORIES = "https://raw.githubusercontent.com/soscolorful/rachels-code/refs/heads/main/story.py"
 
 
 def rachels_story_reader():
